@@ -116,7 +116,7 @@ This internship contains 3 stages:
 3.Profit by brand, Product_line
 4.Profits by months and weekdays
 
-Sincere, Thank You for pouring Patience and support to read by my First Data Analytics Report.
+Sincere, Thank You for pouring Patience and support to read by my First Data Analytics Project.
  
 
  
