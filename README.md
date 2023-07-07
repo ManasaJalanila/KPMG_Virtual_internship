@@ -56,32 +56,70 @@ This internship contains 3 stages:
    ProductIDCount = CALCULATE(COUNTROWS(Transactions), ALLEXCEPT(Transactions, Transactions[CustomerID]))
    TotalProfit=CALCULATE (SUM(Transactions[Profit]), ALLEXCEPT(Transactions, Transactions[CustomerID]))
  
-  Below all used CARD visual ot store its respective value,
-  R_Score( based on  MinRecency) :  min: used card visual to store the value
-                                                                max: used card visual to store the value
-                                                                 first_quartile= PERCENTILE.INC(Transactions[MinRecency], 0.25) 
-                                                                second_quartile(median)=PERCENTILE.INC(Transactions[MinRecency], 0.50) 
-                                                                 third_quartile=PERCENTILE.INC(Transactions[MinRecency], 0.75) 
+  Below all used CARD visual to store its respective value,
+  
+  R_Score( based on  MinRecency) : 4 is the latest arrival of the customer, 1 is the earliest arrival. 
+  SWITCH(TRUE(),Transactions[MinRecency]<=firstquartile && Transactions[MinRecency]>min,4,
+                                 Transactions[MinRecency]>firstquartile&& Transactions[MinRecency]<=secondquartile,3,  
+                                 Transactions[MinRecency]>secondquartile && Transactions[MinRecency]<=thirdquartile,2,1)
+  min: used card visual to store the value
+ max: used card visual to store the value 
+ first_quartile= PERCENTILE.INC(Transactions[MinRecency], 0.25) 
+ second_quartile(median)=PERCENTILE.INC(Transactions[MinRecency], 0.5)
+ third_quartile=PERCENTILE.INC(Transactions[MinRecency], 0.75) 
                                                                
-   F_Score(based on ProductIDCount ): min: used card visual to store the value
-                                                                      max: used card visual to store the value
-                                                                    first_quartile=PERCENTILE.INC(Transactions[ ProductIDCount], 0.25)
-                                                                    second_quartile(median)=PERCENTILE.INC(Transactions[ ProductIDCount], 0.50)
-                                                                    third_quartile=PERCENTILE.INC(Transactions[ ProductIDCount], 0.75) 
+   F_Score(based on ProductIDCount ):1 is less frequent, 4 is more frequent.
+   SWITCH(TRUE(),Transactions[ProductIDCount]<=firstquartile && Transactions[ProductIDCount]>min,1,
+                                 Transactions[ProductIDCount]>firstquartile&& Transactions[ProductIDCounty]<=secondquartile,2,  
+                                 Transactions[ProductIDCount]>secondquartile && Transactions[ProductIDCount]<=thirdquartile,3,4)
+   min: used card visual to store the value
+   max: used card visual to store the value
+   irst_quartile=PERCENTILE.INC(Transactions[ ProductIDCount], 0.25)
+   second_quartile(median)=PERCENTILE.INC(Transactions[ ProductIDCount],0.25)
+   third_quartile=PERCENTILE.INC(Transactions[ ProductIDCount], 0.75) 
                                                                
    
-   M_Score(based on  TotalProfit):     min: used card visual to store the value
-                                                                max: used card visual to store the value
-                                                                first_quartile=PERCENTILE.INC(Transactions[ TotalProfit ], 0.25) 
-                                                                second_quartile(median)=PERCENTILE.INC(Transactions[ TotalProfit ], 0.50) 
-                                                                 third_quartile=PERCENTILE.INC(Transactions[ TotalProfit ], 0.75) 
+   M_Score(based on  Sales/TotalProfit):  1 is spends less in purchasing product, 4Spends more in purchasing 
+    SWITCH(TRUE(),Transactions[Sales/TotalProfit]<=firstquartile && Transactions[Sales/TotalProfit]>min,1,
+                                 Transactions[Sales/TotalProfit]>firstquartile&& Transactions[Sales/TotalProfit]<=secondquartile,2,  
+                                 Transactions[Sales/TotalProfit]>secondquartile && Transactions[Sales/TotalProfit]<=thirdquartile,3,4)
+   min: used card visual to store the value
+   max: used card visual to store the value
+   first_quartile=PERCENTILE.INC(Transactions[ TotalProfit ], 0.25) 
+   second_quartile(median)=PERCENTILE.INC(Transactions[ TotalProfit ], 0.50) 
+   third_quartile=PERCENTILE.INC(Transactions[ TotalProfit ], 0.75) 
                                                                
    RFM value:  (100*R_Score)+(10*F_Score)+M_Score
-                           min: used card visual to store the value
-                           max: used card visual to store the value
-                           first_quartile= PERCENTILE.INC('Transactions[RFM value], 0.25)
-                          second_quartile(median)=PERCENTILE.INC('Transactions[RFM value], 0.50)
-                          third_quartile=PERCENTILE.INC('Transactions[RFM value], 0.75)
+   Customer Profile=SWITCH(TRUE(),Transactions[ RFM value]<=firstquartile && Transactions[ RFM value]>min,'Bronze customer',
+                                 Transactions[ RFM valuet]>firstquartile&& Transactions[ RFM value]<=secondquartile,'Silver customer',  
+                                 Transactions[t RFM value]>secondquartile && Transactions[ RFM value]<=thirdquartile,'Gold customer', 'Platinum customer')
+   min: used card visual to store the value
+   max: used card visual to store the value
+   first_quartile= PERCENTILE.INC('Transactions[RFM value], 0.25)
+   second_quartile(median)=PERCENTILE.INC('Transactions[RFM value], 0.50)
+   third_quartile=PERCENTILE.INC('Transactions[RFM value], 0.75)
+
+   3. Finally, Last but my favorite task is to create Visuals and creating report for the requirements of the client.
+       Report contains a 4 pages of canva,
+1. Total Profit based on Age group and wealth segment
+         Measure: Agegroup=switch(true(),Transactions[Age]<=30  && Transactions[Age]>21,"21-30",
+                                 Transactions[Age]>=31 && Transactions[Age]<=40,"31-40",  
+                                 Transactions[Age]>=41 && Transactions[Age]<=50,"41-50",
+                                 Transactions[Age]>=51 && Transactions[Age]<=60,"51-60",
+                                  Transactions[Age]>=61 && Transactions[Age]<=70,"61-70",
+                                  Transactions[Age]>=71 && Transactions[Age]<=80,"71-80",
+                                  Transactions[Age]>=81 && Transactions[Age]<=92,"81-92")
+-> Total Profit based on Car owned by different states by Age_group and Gender
+->Bike related purchased based on job industry, wealth segment and its Profits
+ This report page has page navigations to Top customers followed by Brands And Products Followed by Months and Weekdays and back to Report page 
+2.Top Customers by Age, Job industry, Wealth Segment,State
+3.Profit by brand, Product_line
+4.Profits by months and weekdays
+
+Sincere, Thank You for pouring Patience and support to read by my First Data Analytics Report.
+ 
+
+ 
     
                                                                  
    
