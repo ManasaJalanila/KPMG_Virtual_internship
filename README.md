@@ -1,4 +1,4 @@
-# KPMG_Virtual_internship
+# KPMG_Data Analytics_Virtual_Internship
 KPMG virtual internship repo contains the internship elements that i had learned in the internship. To explore--
 This internship contains 3 stages:
 1. Communicating to the client -Sprocket central pty limited, the company that is incolved in the sales of bikes and cycling accessories to its customers.
