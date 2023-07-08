@@ -1,5 +1,5 @@
 # KPMG_Data Analytics_Virtual_Internship
-KPMG virtual internship repo contains the internship elements that i had learned in the internship. To explore--
+KPMG virtual internship repo contains the internship Tasks that i had learnt in the internship. To explore--
 This internship contains 3 stages:
 1. Communicating to the client -Sprocket central pty limited, the company that is incolved in the sales of bikes and cycling accessories to its customers.
    The marketing team of the client's company wants to know the issues related to data and mitigate them for which
@@ -98,10 +98,10 @@ This internship contains 3 stages:
    first_quartile= PERCENTILE.INC('Transactions[RFM value], 0.25)
    second_quartile(median)=PERCENTILE.INC('Transactions[RFM value], 0.50)
    third_quartile=PERCENTILE.INC('Transactions[RFM value], 0.75)
-
-   3. Finally, Last but my favorite task is to create Visuals and creating report for the requirements of the client.
+   
+3. Finally, Last but my favorite task is to create Visuals and create report for the requirements of the client.
        Report contains a 4 pages of canva,
-1. Total Profit based on Age group and wealth segment
+         1. Total Profit based on Age group and wealth segment
          Measure: Agegroup=switch(true(),Transactions[Age]<=30  && Transactions[Age]>21,"21-30",
                                  Transactions[Age]>=31 && Transactions[Age]<=40,"31-40",  
                                  Transactions[Age]>=41 && Transactions[Age]<=50,"41-50",
@@ -109,14 +109,19 @@ This internship contains 3 stages:
                                   Transactions[Age]>=61 && Transactions[Age]<=70,"61-70",
                                   Transactions[Age]>=71 && Transactions[Age]<=80,"71-80",
                                   Transactions[Age]>=81 && Transactions[Age]<=92,"81-92")
--> Total Profit based on Car owned by different states by Age_group and Gender
-->Bike related purchased based on job industry, wealth segment and its Profits
- This report page has page navigations to Top customers followed by Brands And Products Followed by Months and Weekdays and back to Report page 
-2.Top Customers by Age, Job industry, Wealth Segment,State
-3.Profit by brand, Product_line
-4.Profits by months and weekdays
+        -> Total Profit based on Car owned by different states by Age_group and Gender
+        ->Bike related purchased based on job industry, wealth segment and its Profits
+        This report page has page navigations to Top customers followed by Brands And Products Followed by Months and Weekdays and back to Report page 
+        2.Top Customers by Age, Job industry, Wealth Segment,State
+        3.Profit by brand, Product_line
+        4.Profits by months and weekdays
+The  Visuals used in the report are
+TextBox, Buttoms to navigate pages,  Back,Icons,
+Clustered Column chart, Pie chart, donut chart,Line and stacked column chart , Tables,Slicers, Cards,Funnel,Stacked Area chart.
+
 
 Sincere, Thank You for pouring Patience and Support to read by my First Data Analytics Project.
+For more information regarding the dataset,reports presentations,  Don't forget to have a glance at the files included!!!
  
 
  
